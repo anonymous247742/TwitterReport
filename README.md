@@ -4,6 +4,7 @@ A mass report for twitter.
 ## REQUIREMENTS
 
 -Python 2.7
+
 -Splinter
 
 **UNIX**
