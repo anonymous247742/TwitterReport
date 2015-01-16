@@ -7,10 +7,10 @@ This script requires Python 2.7.
 
 Splinter
 
-### UNIX
+Splinter for UNIX :
 Follow instructions : http://splinter.readthedocs.org/en/latest/install.html
 
-### WINDOWS
+Splinter for WINDOWS :
 
 Get the zip : https://github.com/cobrateam/splinter/archive/master.zip
 unzip on your disk, open a terminal (start menu -> type cmd -> launch cmd.exe)
@@ -20,13 +20,13 @@ launch 'python setup.py install'
 ## USAGE
 
 Get the twitter accounts list
-    Example : 
+    ```Example : 
         https://twitter.com/XXXXXX
         https://twitter.com/XXXXXX
         https://twitter.com/XXXXXX
         https://twitter.com/XXXXXX
         https://twitter.com/XXXXXX
-        ...
+        ...```
 
 Save it for example as TwitList.txt in the same folder as twitterReport.py
 In the terminal go in the folder you saved twitterReport.py and TwitList.txt
