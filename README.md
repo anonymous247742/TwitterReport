@@ -3,14 +3,15 @@ A mass report for twitter.
 
 ## REQUIREMENTS
 
-This script requires Python 2.7.
+-Python 2.7
 
-Splinter
+-Splinter
 
-Splinter for UNIX :
+**UNIX**
+
 Follow instructions : http://splinter.readthedocs.org/en/latest/install.html
 
-Splinter for WINDOWS :
+**WINDOWS**
 
 Get the zip : https://github.com/cobrateam/splinter/archive/master.zip
 unzip on your disk, open a terminal (start menu -> type cmd -> launch cmd.exe)
@@ -20,6 +21,7 @@ launch 'python setup.py install'
 ## USAGE
 
 Get the twitter accounts list
+
     ```Example : 
         https://twitter.com/XXXXXX
         https://twitter.com/XXXXXX
