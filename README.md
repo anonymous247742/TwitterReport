@@ -1,6 +1,8 @@
 # TwitterReport
 A mass report for twitter.
 
+To retrieve the URLs from a text, use this script: https://github.com/anonymous247742/TwitterUrlExtractor
+
 ## REQUIREMENTS
 
 -Python 2.7
