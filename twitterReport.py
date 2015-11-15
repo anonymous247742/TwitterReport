@@ -7,19 +7,22 @@ from datetime import datetime
 from splinter.request_handler.status_code import HttpResponseError
 import getpass
 
+
 def main(argv):
     d = datetime.now()
     date = str(d.year) + '' + str(d.month) + '' + str(d.day) + '' + str(d.hour) + '' + str(d.minute) + '' + str(d.second)
+    username = None
+    txt = None
     try:
         opts, args = getopt.getopt(argv,"hi:u:",["file=","user="])
     except getopt.GetoptError:
-        print 'twitterReport.py -u <Twitter username> -i <accounts_list.txt>'
+        print 'Usage: python twitterReport.py -u <Twitter username> -i <accounts_list.txt>'
         print 'The accounts list must have only 1 account per line'
         sys.exit(2)
 
     for opt, arg in opts:
         if opt == '-h':
-            print 'twitterReport.py -u <Twitter username> -i <accounts_list.txt>'
+            print 'Usage: python twitterReport.py -u <Twitter username> -i <accounts_list.txt>'
             print 'The accounts list must have only 1 url per line'
             sys.exit()
         elif opt in ("-i", "--file"):
@@ -27,12 +30,8 @@ def main(argv):
         elif opt in ("-u", "--user"):
             username = arg
 
-
-    try:
-        username
-        txt
-    except getopt.GetoptError:
-        print 'twitterReport.py -u <Twitter username> -i <account_list.txt>'
+    if not username and not txt:
+        print 'Usage: python twitterReport.py -u <Twitter username> -i <account_list.txt>'
         print 'The accounts list must have only 1 account per line'
         sys.exit()
 
