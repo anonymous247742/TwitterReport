@@ -66,7 +66,7 @@ def main(argv):
 
         for line in file:
             try:
-                url = re.match(r"https?://(www\.)?twitter\.com/(#!/)?@?([^/\s]*)",line.strip())
+                url = re.match(r"(?:https:\/\/)?(?:http:\/\/)?(?:www\.)?twitter\.com/(#!/)?@?([^/\s]*)",line.strip())
                 url = url.group()
                 browser.visit(url)
                 if not browser.is_element_present_by_css('.route-account_suspended'):
