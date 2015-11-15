@@ -56,9 +56,9 @@ def main(argv):
 #
 #    with Browser('firefox',profile_preferences=proxy_settings) as browser:
         browser.visit("https://twitter.com/")
-        browser.execute_script('document.getElementById("signin-email").value = "'+username+'"')
-        browser.execute_script('document.getElementById("signin-password").value = "'+password+'"')
-        browser.find_by_css('button[type="submit"].submit.btn.primary-btn').click()
+        browser.execute_script("$('#front-container #signin-email').val('%s');"  % (username))
+        browser.execute_script("$('#front-container #signin-password').val('%s');" % (password))
+        browser.find_by_css("button[type='submit'].submit.btn.primary-btn").click()
         try:
             file = open(txt, 'r')
         except:
