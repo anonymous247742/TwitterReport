@@ -5,6 +5,7 @@ from splinter import Browser
 import sys, getopt, re
 from datetime import datetime
 from splinter.request_handler.status_code import HttpResponseError
+import getpass
 
 def main(argv):
     d = datetime.now()
@@ -26,7 +27,6 @@ def main(argv):
         elif opt in ("-u", "--user"):
             username = arg
 
-    password = raw_input("Enter your twitter password: ")
 
     try:
         username
@@ -36,6 +36,7 @@ def main(argv):
         print 'The accounts list must have only 1 account per line'
         sys.exit()
 
+    password = getpass.getpass()
 
 # comment this line if you want to use privoxy + tor:
     with Browser() as browser:
