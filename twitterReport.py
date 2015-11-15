@@ -59,6 +59,11 @@ def main(argv):
         browser.execute_script("$('#front-container #signin-email').val('%s');"  % (username))
         browser.execute_script("$('#front-container #signin-password').val('%s');" % (password))
         browser.find_by_css("button[type='submit'].submit.btn.primary-btn").click()
+
+        if "https://twitter.com/login/error" in browser.url:
+            print "The email and password you entered did not match our records."
+            sys.exit()
+
         try:
             file = open(txt, 'r')
         except:
