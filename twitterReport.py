@@ -72,7 +72,7 @@ def main(argv):
         try:
             file = open(txt, 'r')
         except:
-            print "Impossible d'ouvrir le fichier"
+            print "Unable to open file"
             sys.exit()
 
         for line in file:
