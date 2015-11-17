@@ -1,7 +1,12 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
+try:
+    from splinter import Browser
+except:
+    print "Please install Splinter: http://splinter.readthedocs.org/en/latest/install.html"
+    sys.exit()
 
-from splinter import Browser
+
 import sys, getopt, re
 from datetime import datetime
 from splinter.request_handler.status_code import HttpResponseError
