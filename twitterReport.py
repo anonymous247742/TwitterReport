@@ -7,7 +7,7 @@ except:
     sys.exit()
 
 
-import sys, getopt, re
+import sys, getopt, re, os
 from datetime import datetime
 from splinter.request_handler.status_code import HttpResponseError
 import getpass
@@ -19,16 +19,17 @@ def main(argv):
     username = None
     txt = None
     try:
-        opts, args = getopt.getopt(argv,"hi:u:",["file=","user="])
+        opts, args = getopt.getopt(argv,"hi:u:",["file=","user=","help"])
     except getopt.GetoptError:
-        print 'Usage: python twitterReport.py -u <Twitter username> -i <accounts_list.txt>'
-        print 'The accounts list must have only 1 account per line'
+        print 'Use --help for help'
         sys.exit(2)
 
     for opt, arg in opts:
-        if opt == '-h':
-            print 'Usage: python twitterReport.py -u <Twitter username> -i <accounts_list.txt>'
-            print 'The accounts list must have only 1 url per line'
+        if opt in ("-h", "--help"):
+            print 'Usage: %s <options> \n' % (os.path.basename(__file__))
+            print '     -h, --help              This help'
+            print '     -u, --user USERNAME     Your Twitter username'
+            print '     -f, --file FILE         File with twitter URLs list'
             sys.exit()
         elif opt in ("-i", "--file"):
             txt = arg
@@ -36,6 +37,7 @@ def main(argv):
             username = arg
 
     if not username and not txt:
+        print 'Use --help for help\n'
         print 'Usage: python twitterReport.py -u <Twitter username> -i <account_list.txt>'
         print 'The accounts list must have only 1 account per line'
         sys.exit()
@@ -56,7 +58,7 @@ def main(argv):
 #            'network.proxy.socks': proxyIP,
 #            'network.proxy.socks_port':proxyPort,
 #            'network.proxy.ftp': proxyIP,
-#            'network.proxy.ftp_port':proxyPort 
+#            'network.proxy.ftp_port':proxyPort
 #            }
 #
 #    with Browser('firefox',profile_preferences=proxy_settings) as browser:
