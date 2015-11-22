@@ -19,7 +19,7 @@ def main(argv):
     username = None
     txt = None
     try:
-        opts, args = getopt.getopt(argv,"hi:u:",["file=","user=","help"])
+        opts, args = getopt.getopt(argv, "hi:u:", ["file=", "user=", "help"])
     except getopt.GetoptError:
         print 'Use --help for help'
         sys.exit(2)
@@ -63,7 +63,7 @@ def main(argv):
 #
 #    with Browser('firefox',profile_preferences=proxy_settings) as browser:
         browser.visit("https://twitter.com/login")
-        browser.execute_script("$('.js-username-field').val('%s');"  % (username))
+        browser.execute_script("$('.js-username-field').val('%s');" % (username))
         browser.execute_script("$('.js-password-field').val('%s');" % (password))
         browser.find_by_css("button[type='submit'].submit.btn.primary-btn").click()
 
