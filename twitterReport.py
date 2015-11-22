@@ -127,13 +127,13 @@ def main(argv):
                 print 'Quit by keyboard interrupt sequence!'
                 break
             except HttpResponseError as e:
-                msg = '%s - HttpResponseError : %s' % (line.strip(), e)
+                msg = '%s - %s' % (line.strip(), e)
                 print msg
                 with open("log_Error.txt", "a") as log:
                     log.write(msg+"\n")
             except:
                 if line:
-                    msg = '%s - Error' % (line)
+                    msg = '%s - Error' % (line.strip())
                     print msg
                     with open("log_Error.txt", "a") as log:
                         log.write(msg+"\n")
