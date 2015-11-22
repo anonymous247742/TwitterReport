@@ -74,8 +74,7 @@ def main(argv):
         try:
             file = open(txt, 'r')
         except:
-            print "Unable to open file"
-            sys.exit()
+            sys.exit("Unable to open file %s" % txt)
 
         for line in file:
             try:
