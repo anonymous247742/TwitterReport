@@ -62,9 +62,9 @@ def main(argv):
 #            }
 #
 #    with Browser('firefox',profile_preferences=proxy_settings) as browser:
-        browser.visit("https://twitter.com/")
-        browser.execute_script("$('#front-container #signin-email').val('%s');"  % (username))
-        browser.execute_script("$('#front-container #signin-password').val('%s');" % (password))
+        browser.visit("https://twitter.com/login")
+        browser.execute_script("$('.js-username-field').val('%s');"  % (username))
+        browser.execute_script("$('.js-password-field').val('%s');" % (password))
         browser.find_by_css("button[type='submit'].submit.btn.primary-btn").click()
 
         if "https://twitter.com/login/error" in browser.url:
