@@ -35,6 +35,14 @@ Get the twitter accounts list
 Save it for example as TwitList.txt in the same folder as twitterReport.py
 In the terminal go in the folder you saved twitterReport.py and TwitList.txt
 
+    Supported format:
+        http://twitter.com/example
+        https://twitter.com/example
+        http://www.twitter.com/example
+        https://www.twitter.com/example
+        https://twitter.com/intent/user?user_id=123456789
+        http://twitter.com/intent/user?user_id=123456789
+
 Launch
 
     python twitterReport.py -u YOUR_USER_NAME -i TwitList.txt

@@ -78,10 +78,13 @@ def main(argv):
 
         for line in file:
             try:
-                url = re.match(r"(?:https:\/\/)?(?:http:\/\/)?(?:www\.)?twitter\.com/(#!/)?@?([^/\s]*)",line.strip())
-                url = url.group()
+                url_r = re.match(r"(?:https:\/\/)?(?:http:\/\/)?(?:www\.)?twitter\.com/(#!/)?@?([^/\s]*)(/user\?user_id=\d+)?", line.strip())
+                url = url_r.group()
                 browser.visit(url)
-                if not browser.is_element_present_by_css('.route-account_suspended'):
+                is_suspended = browser.is_element_present_by_css('.route-account_suspended')
+                if url_r.lastindex == 3 and not is_suspended:
+                        browser.find_by_id('ft').find_by_css('.alternate-context').click()
+                if not is_suspended:
                     browser.find_by_css('.user-dropdown').click()
                     browser.find_by_css('li.report-text button[type="button"]').click()
                     with browser.get_iframe('new-report-flow-frame') as iframe:
@@ -96,12 +99,21 @@ def main(argv):
                     with browser.get_iframe('new-report-flow-frame') as iframe:
                         iframe.find_by_css("input[type='radio'][value='violence']").check()
                     browser.find_by_css('.new-report-flow-next-button').click()
-                    followers = browser.find_by_css('a[data-nav="followers"] .ProfileNav-value').value;
-                    msg = url.strip()+' - ' + followers + ' Followers'
+
+                    followers = browser.find_by_css('.ProfileNav-item--followers .ProfileNav-value').first.text
+                    user_id = browser.find_by_css("div[data-user-id].ProfileNav").first['data-user-id']
+
+                    twitter_name = url_r.group(2)
+
+                    if 'intent' in twitter_name:
+                        twitter_name = browser.find_by_css('.ProfileCardMini-screenname .u-linkComplex-target').first.text
+
+                    msg = "https://twitter.com/intent/user?user_id=%s - %s - %s Followers" % (user_id, twitter_name, followers)
+
                     with open("log_reported_"+date+".txt", "a") as log:
                         log.write(msg+"\n")
                 elif browser.is_element_present_by_css('.route-account_suspended'):
-                    msg =  line.strip()+' - Suspended'
+                    msg = line.strip()+' - Suspended'
                     with open("log_suspended.txt", "a") as log:
                         log.write(msg+"\n")
                 else:
@@ -114,14 +126,14 @@ def main(argv):
             except KeyboardInterrupt:
                 print 'Quit by keyboard interrupt sequence!'
                 break
-            except HttpResponseError:
-                msg = line.strip()+' - HttpResponseError'
+            except HttpResponseError as e:
+                msg = '%s - HttpResponseError : %s' % (line.strip(), e)
                 print msg
                 with open("log_Error.txt", "a") as log:
                     log.write(msg+"\n")
             except:
                 if line:
-                    msg = url.strip()+' - CatchAllError'
+                    msg = '%s - Error' % (line)
                     print msg
                     with open("log_Error.txt", "a") as log:
                         log.write(msg+"\n")
